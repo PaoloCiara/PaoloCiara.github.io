@@ -5,55 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Paolo Ciaramitaro — Software &amp; Finance</title>
 <meta name="description" content="Francesco Paolo Ciaramitaro — Computer Engineering student at Union College building tools at the intersection of software and finance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --accent: #4f46e5; --accent-dark: #4338ca; --accent-soft: #eef2ff;
+    --garnet: #9a1b32; --garnet-soft: #fdf2f4;
     --grad: linear-gradient(135deg, #4f46e5, #06b6d4);
     --ink: #0f172a; --ink-2: #475569; --ink-3: #94a3b8;
     --line: #e2e8f0; --bg: #ffffff; --bg-2: #f8fafc;
     --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    --serif: 'Playfair Display', Georgia, serif;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font); color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font); color: var(--ink); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; background: #fbfaff; position: relative;
+  }
+  /* Aurora background: fixed, layered radial washes */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(900px 520px at 12% -4%,  rgba(79, 70, 229, 0.10), transparent 62%),
+      radial-gradient(820px 460px at 88% 12%,  rgba(6, 182, 212, 0.10),  transparent 62%),
+      radial-gradient(700px 480px at 78% 86%,  rgba(154, 27, 50, 0.06),  transparent 60%),
+      radial-gradient(640px 420px at 6% 74%,   rgba(79, 70, 229, 0.07),  transparent 60%);
+  }
   .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+  .serif { font-family: var(--serif); }
 
   /* Nav */
-  nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: 15px; text-decoration: none; color: var(--ink); }
-  .brand-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--grad); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(79,70,229,.3); }
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(251,250,255,0.8); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(226,232,240,0.8); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .wordmark {
+    font-family: var(--serif); font-style: italic; font-weight: 600;
+    font-size: 20px; letter-spacing: 0.2px; text-decoration: none; color: var(--ink);
+  }
+  .wordmark span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .nav-links { display: flex; gap: 22px; align-items: center; }
   .nav-links a { text-decoration: none; color: var(--ink-2); font-size: 14px; font-weight: 500; }
   .nav-links a:hover { color: var(--ink); }
 
   /* Hero */
-  .hero { padding: 96px 0 72px; text-align: center; }
-  .hero .kicker { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border: 1px solid #c7d2fe; padding: 5px 14px; border-radius: 999px; margin-bottom: 22px; }
-  .hero h1 { font-size: clamp(34px, 6vw, 54px); font-weight: 750; letter-spacing: -1.2px; line-height: 1.12; }
-  .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p { max-width: 620px; margin: 20px auto 0; color: var(--ink-2); font-size: 17px; }
+  .hero { padding: 92px 0 64px; text-align: center; }
+  .hero .kicker { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: rgba(238,242,255,0.85); border: 1px solid #c7d2fe; padding: 5px 14px; border-radius: 999px; margin-bottom: 26px; }
+  .hero .name {
+    font-family: var(--serif); font-style: italic; font-weight: 700;
+    font-size: clamp(42px, 7.5vw, 74px); line-height: 1.06; letter-spacing: -0.5px;
+    background: linear-gradient(120deg, #1e1b4b 0%, #4f46e5 55%, #06b6d4 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .tag { font-size: clamp(17px, 2.6vw, 21px); color: var(--ink-2); margin-top: 18px; font-weight: 500; }
+  .hero p.blurb { max-width: 600px; margin: 14px auto 0; color: var(--ink-2); font-size: 16px; }
   .hero-cta { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 9px; font-size: 14.5px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--bg); transition: all .15s; }
   .btn:hover { border-color: var(--ink-3); background: var(--bg-2); transform: translateY(-1px); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(79,70,229,.32); }
   .btn.primary:hover { background: var(--accent-dark); }
+  .btn.garnet { background: var(--garnet); border-color: var(--garnet); color: #fff; box-shadow: 0 4px 14px rgba(154,27,50,.28); }
+  .btn.garnet:hover { filter: brightness(1.1); }
 
   section { padding: 64px 0; }
   .section-kicker { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
   h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
+  h2.serif { font-family: var(--serif); font-weight: 700; }
   .section-sub { color: var(--ink-2); margin-top: 8px; max-width: 640px; }
+
+  /* Education / major showcase */
+  .edu-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 18px; margin-top: 36px; }
+  @media (max-width: 780px) { .edu-grid { grid-template-columns: 1fr; } }
+  .edu-card {
+    border: 1px solid var(--line); border-radius: 16px; padding: 30px;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(6px);
+    box-shadow: 0 2px 10px rgba(15,23,42,.05);
+  }
+  .edu-card.union { border-top: 4px solid var(--garnet); }
+  .union-head { display: flex; align-items: center; gap: 16px; }
+  .union-head h3 { font-family: var(--serif); font-size: 22px; font-weight: 700; }
+  .union-head .sub { font-size: 13px; color: var(--ink-2); }
+  .edu-facts { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; font-size: 14px; color: var(--ink-2); }
+  .edu-facts b { color: var(--ink); font-weight: 600; }
+  .edu-facts .fact { display: flex; gap: 9px; align-items: baseline; }
+  .edu-facts .dot { color: var(--garnet); font-weight: 700; }
+
+  .major-card {
+    position: relative; overflow: hidden; border-radius: 16px; padding: 30px;
+    background: #0f1030; color: #e2e8f0; border: 1px solid #262a63;
+    box-shadow: 0 18px 44px rgba(30,27,75,.35);
+  }
+  .major-card .circuit { position: absolute; inset: 0; opacity: .5; }
+  .major-card > * { position: relative; }
+  .major-kicker { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #67e8f9; }
+  .major-card h3 { font-family: var(--serif); font-style: italic; font-size: clamp(26px, 3.6vw, 34px); margin-top: 8px; color: #fff; }
+  .major-card p { margin-top: 10px; font-size: 14px; color: #b7bce3; max-width: 440px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+  .chip-row span { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(103,232,249,0.10); border: 1px solid rgba(103,232,249,0.28); color: #a5f3fc; }
+  .chip-row.warm span { background: rgba(129,140,248,0.12); border-color: rgba(129,140,248,0.32); color: #c7d2fe; }
+
+  /* Resume */
+  .resume-box { margin-top: 36px; display: grid; grid-template-columns: 7fr 5fr; gap: 18px; }
+  @media (max-width: 820px) { .resume-box { grid-template-columns: 1fr; } }
+  .res-col { display: flex; flex-direction: column; gap: 14px; }
+  .res-card { border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; background: rgba(255,255,255,0.88); box-shadow: 0 2px 10px rgba(15,23,42,.04); }
+  .res-card h4 { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 14px; }
+  .job { padding-left: 16px; border-left: 2px solid var(--accent-soft); margin-bottom: 16px; }
+  .job:last-child { margin-bottom: 0; }
+  .job .role { font-weight: 650; font-size: 14.5px; }
+  .job .org { font-size: 13px; color: var(--ink-2); margin-top: 1px; }
+  .job .when { font-size: 12px; color: var(--ink-3); }
+  .job p { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+  .skill-rows { display: flex; flex-direction: column; gap: 12px; }
+  .skill-rows .lbl { font-size: 12px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pills span { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--bg-2); border: 1px solid var(--line); padding: 4px 11px; border-radius: 999px; }
 
   /* App mockup */
   .mock { margin: 40px auto 0; max-width: 780px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(15,23,42,.12); background: var(--bg); text-align: left; }
   .mock-bar { display: flex; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--line); background: var(--bg-2); }
-  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-w { width: 11px; height: 11px; border-radius: 50%; }
   .mock-body { display: flex; min-height: 300px; }
   .mock-side { width: 168px; border-right: 1px solid var(--line); background: var(--bg-2); padding: 14px 10px; flex-shrink: 0; }
   .mock-nav { font-size: 12px; color: var(--ink-2); padding: 6px 9px; border-radius: 6px; margin-bottom: 2px; }
   .mock-nav.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-  .mock-main { flex: 1; padding: 18px; }
+  .mock-main { flex: 1; padding: 18px; position: relative; }
   .mock-title { font-weight: 650; font-size: 15px; margin-bottom: 12px; }
   .mock-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; margin-bottom: 7px; }
   .mock-logo { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10.5px; font-weight: 700; }
@@ -62,25 +139,24 @@
   .mock-meta { font-size: 11px; color: var(--ink-3); }
   .mock-score { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 5px; background: #f0fdf4; color: #15803d; }
   .mock-fab { position: absolute; right: 16px; bottom: 16px; width: 38px; height: 38px; border-radius: 50%; background: var(--grad); box-shadow: 0 5px 14px rgba(79,70,229,.4); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; }
-  .mock-main { position: relative; }
 
   /* Features */
   .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 36px; }
-  .feat { border: 1px solid var(--line); border-radius: 12px; padding: 22px; background: var(--bg); transition: box-shadow .15s, transform .15s; }
+  .feat { border: 1px solid var(--line); border-radius: 12px; padding: 22px; background: rgba(255,255,255,0.88); transition: box-shadow .15s, transform .15s; }
   .feat:hover { box-shadow: 0 8px 24px rgba(15,23,42,.08); transform: translateY(-2px); }
   .feat-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
   .feat h3 { font-size: 15.5px; font-weight: 650; margin-bottom: 6px; }
   .feat p { font-size: 13.5px; color: var(--ink-2); }
 
   /* Download strip */
-  .dl { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .dl { background: linear-gradient(120deg, rgba(238,242,255,.7), rgba(236,254,255,.7)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .dl-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .dl h2 { font-size: 24px; }
   .dl .hint { font-size: 12.5px; color: var(--ink-3); margin-top: 10px; max-width: 460px; }
 
   /* Projects */
   .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 36px; }
-  .proj { border: 1px solid var(--line); border-radius: 14px; padding: 26px; background: var(--bg); }
+  .proj { border: 1px solid var(--line); border-radius: 14px; padding: 26px; background: rgba(255,255,255,0.88); }
   .proj-tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; padding: 4px 10px; border-radius: 5px; margin-bottom: 14px; }
   .tag-live { background: #f0fdf4; color: #15803d; }
   .tag-dev { background: #fffbeb; color: #b45309; }
@@ -92,8 +168,7 @@
   .proj .links a { font-size: 13.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
   .proj .links a:hover { text-decoration: underline; }
 
-  /* Footer */
-  footer { padding: 56px 0 40px; text-align: center; border-top: 1px solid var(--line); margin-top: 32px; }
+  footer { padding: 56px 0 40px; text-align: center; border-top: 1px solid var(--line); margin-top: 32px; background: rgba(255,255,255,.6); }
   footer h2 { font-size: 24px; }
   footer p { color: var(--ink-2); margin-top: 8px; }
   .foot-links { display: flex; gap: 14px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
@@ -104,39 +179,164 @@
 
 <nav>
   <div class="wrap nav-inner">
-    <a class="brand" href="#">
-      <span class="brand-mark">
-        <svg viewBox="0 0 1024 1024" width="17" height="17"><path d="M290 706 L468 524 L612 614 L744 372" stroke="#fff" stroke-width="72" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".9"/><circle cx="290" cy="706" r="84" fill="#fff"/><circle cx="468" cy="524" r="84" fill="#fff"/><circle cx="612" cy="614" r="84" fill="#fff"/><circle cx="744" cy="372" r="106" fill="#fff"/></svg>
-      </span>
-      Paolo Ciaramitaro
-    </a>
+    <a class="wordmark" href="#">Paolo <span>Ciaramitaro</span></a>
     <div class="nav-links">
+      <a href="#education">Education</a>
+      <a href="#resume">Resume</a>
       <a href="#networking-hub">Networking Hub</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <a href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </nav>
 
 <header class="hero wrap">
   <span class="kicker">Computer Engineering · Union College '28 · New York</span>
-  <h1>Building tools at the intersection of<br><span class="grad">software and finance</span></h1>
-  <p>I'm Francesco Paolo Ciaramitaro — a computer engineering student and backend developer shipping real products: AI-powered desktop apps, financial tooling, and whatever solves the problem in front of me.</p>
+  <h1 class="name">Paolo Ciaramitaro</h1>
+  <div class="tag">Building tools at the intersection of software and finance.</div>
+  <p class="blurb">Backend developer and computer engineering student shipping real products — AI-powered desktop apps, financial tooling, and whatever solves the problem in front of me.</p>
   <div class="hero-cta">
     <a class="btn primary" href="#networking-hub">See Networking Hub</a>
-    <a class="btn" href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub Profile</a>
+    <a class="btn" href="resume.pdf" download>Download Resume</a>
+    <a class="btn" href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub</a>
   </div>
 </header>
 
+<section id="education" class="wrap">
+  <div class="section-kicker">Education</div>
+  <h2 class="serif">Union College, engineered.</h2>
+  <div class="edu-grid">
+    <div class="edu-card union">
+      <div class="union-head">
+        <svg width="52" height="58" viewBox="0 0 52 58" aria-label="Union College shield">
+          <path d="M2 2h48v30c0 13-10 21-24 24C12 53 2 45 2 32V2z" fill="#9a1b32"/>
+          <path d="M2 2h48v10H2z" fill="#7a1527"/>
+          <text x="26" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#fff">U</text>
+          <text x="26" y="10.5" text-anchor="middle" font-family="Georgia, serif" font-size="7" letter-spacing="1.5" fill="#f5d7dd">1795</text>
+        </svg>
+        <div>
+          <h3>Union College</h3>
+          <div class="sub">Schenectady, NY · Class of 2028</div>
+        </div>
+      </div>
+      <div class="edu-facts">
+        <div class="fact"><span class="dot">•</span><span><b>B.S. Computer Engineering</b> — GPA 3.7, Dean's List 2024–25</span></div>
+        <div class="fact"><span class="dot">•</span><span><b>Student Chair, Planning &amp; Priorities Committee</b> — advised the College President and senior leadership on fiscal strategy</span></div>
+        <div class="fact"><span class="dot">•</span><span><b>Union Finance Bootcamp</b> — selected for an intensive immersion in modeling, valuation, and markets</span></div>
+        <div class="fact"><span class="dot">•</span><span><b>Treasurer, Golf Club</b> · Sigma Chi · Catholic Student Association campus minister</span></div>
+      </div>
+    </div>
+
+    <div class="major-card">
+      <svg class="circuit" viewBox="0 0 560 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="#3b3f8f" stroke-width="1.6" fill="none">
+          <path d="M0 60 H120 V140 H260 V80 H420 V180 H560"/>
+          <path d="M0 220 H90 V160 H200 V240 H360 V120 H480 V40 H560"/>
+          <path d="M60 300 V250 H180 V190"/>
+          <path d="M320 300 V260 H440 V220 H560"/>
+          <path d="M140 0 V50 H240"/>
+          <path d="M400 0 V60 H500"/>
+        </g>
+        <g fill="#67e8f9">
+          <circle cx="120" cy="60" r="4"/><circle cx="260" cy="140" r="4"/><circle cx="420" cy="80" r="4"/>
+          <circle cx="90" cy="220" r="4"/><circle cx="200" cy="160" r="4"/><circle cx="360" cy="240" r="4"/><circle cx="480" cy="120" r="4"/>
+          <circle cx="180" cy="250" r="4"/><circle cx="440" cy="260" r="4"/>
+          <circle cx="240" cy="50" r="4"/><circle cx="500" cy="60" r="4"/>
+        </g>
+        <g fill="#818cf8" opacity=".9">
+          <rect x="250" y="130" width="20" height="20" rx="3"/>
+          <rect x="80" y="210" width="20" height="20" rx="3"/>
+          <rect x="470" y="110" width="20" height="20" rx="3"/>
+        </g>
+      </svg>
+      <div class="major-kicker">The Major</div>
+      <h3>Computer Engineering</h3>
+      <p>Where hardware meets software: from FPGA logic design and embedded systems up through full-stack apps and AI integration. I like owning the whole stack — gates to APIs.</p>
+      <div class="chip-row">
+        <span>FPGA · Intel Quartus</span><span>C++</span><span>Embedded Systems</span><span>Digital Logic</span><span>Linux / Unix</span>
+      </div>
+      <div class="chip-row warm">
+        <span>Java</span><span>Python</span><span>React</span><span>Kotlin</span><span>PostgreSQL</span><span>REST APIs</span><span>Claude API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resume" class="wrap">
+  <div class="section-kicker">Resume</div>
+  <h2 class="serif">Where I've worked</h2>
+  <p class="section-sub">The short version — <a href="resume.pdf" download style="color:var(--accent); font-weight:600">download the full PDF</a> for everything.</p>
+  <div class="resume-box">
+    <div class="res-col">
+      <div class="res-card">
+        <h4>Experience</h4>
+        <div class="job">
+          <div class="role">Backend Summer Intern</div>
+          <div class="org">Eulerity — New York, NY</div>
+          <div class="when">June 2026 – Present</div>
+          <p>Engineering "Eulerity Careers," a full-stack recruiting platform using React and Claude AI to automate candidate sourcing and matching — saving the startup $10k/year by replacing Greenhouse. Also rebuilding Admin UI features and optimizing ad-keyword processing.</p>
+        </div>
+        <div class="job">
+          <div class="role">Student Participant</div>
+          <div class="org">Union Finance Bootcamp — New York, NY</div>
+          <div class="when">Nov – Dec 2025</div>
+          <p>Selected for an intensive two-week immersion in financial modeling, valuation, and markets, taught by Union faculty and finance professionals.</p>
+        </div>
+        <div class="job">
+          <div class="role">Outside Operations</div>
+          <div class="org">Whippoorwill Club — Chappaqua, NY</div>
+          <div class="when">2022 – Present (seasonal)</div>
+          <p>Overhauled facility operations, partnered with golf professionals on tournaments, and trained new staff and caddies.</p>
+        </div>
+      </div>
+      <div class="res-card">
+        <h4>Leadership</h4>
+        <div class="job">
+          <div class="role">Student Chair, Planning &amp; Priorities Committee</div>
+          <div class="org">Union College</div>
+          <div class="when">2025 – 2026</div>
+          <p>Forecast a $13.4M FY26 deficit from institutional data, modeled FY27 enrollment scenarios, and advised the College President on scaling the capital budget from $2.0M to $3.7M.</p>
+        </div>
+        <div class="job">
+          <div class="role">Programming Teacher</div>
+          <div class="org">SummerTech / Coditum</div>
+          <div class="when">2021 – 2022</div>
+          <p>Taught Python fundamentals to 60 underprivileged students.</p>
+        </div>
+      </div>
+    </div>
+    <div class="res-col">
+      <div class="res-card">
+        <h4>Skills</h4>
+        <div class="skill-rows">
+          <div><div class="lbl">Engineering</div>
+            <div class="pills"><span>Java</span><span>Python</span><span>C++</span><span>React</span><span>JavaScript</span><span>Kotlin</span><span>PostgreSQL</span><span>REST</span><span>Linux/Unix</span><span>FPGA</span><span>Claude Code</span></div>
+          </div>
+          <div><div class="lbl">Finance</div>
+            <div class="pills"><span>Financial Modeling</span><span>Valuation</span><span>Bloomberg Market Concepts</span><span>Excel</span></div>
+          </div>
+          <div><div class="lbl">Languages</div>
+            <div class="pills"><span>English</span><span>Italian (fluent)</span><span>Spanish (fluent)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-card" style="border-top: 4px solid var(--garnet)">
+        <h4 style="color: var(--garnet)">Currently</h4>
+        <p style="font-size: 14px; color: var(--ink-2)">Backend intern at Eulerity in NYC, building AI-powered recruiting tools — and targeting software engineering and finance internships for summer 2027.</p>
+        <div style="margin-top: 16px"><a class="btn garnet" href="resume.pdf" download>Download Resume (PDF)</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="networking-hub" class="wrap">
   <div class="section-kicker">Flagship project</div>
-  <h2>Networking Hub</h2>
+  <h2 class="serif">Networking Hub</h2>
   <p class="section-sub">An AI-powered career command center for macOS. It hunts openings across twelve sources, scores them against your resume, researches companies down to their SEC filings, finds people worth emailing, teaches you the role — and ships with a built-in AI assistant.</p>
 
   <div class="mock">
     <div class="mock-bar">
-      <span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+      <span class="dot-w" style="background:#ff5f57"></span><span class="dot-w" style="background:#febc2e"></span><span class="dot-w" style="background:#28c840"></span>
     </div>
     <div class="mock-body">
       <div class="mock-side">
@@ -145,7 +345,7 @@
         <div class="mock-nav">Forecast</div>
         <div class="mock-nav">Companies</div>
         <div class="mock-nav">Learn</div>
-        <div class="mock-nav">Assistant</div>
+        <div class="mock-nav">Documents</div>
       </div>
       <div class="mock-main">
         <div class="mock-title">Top matches for you</div>
@@ -207,8 +407,8 @@
     </div>
     <div class="feat">
       <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M9 1L3 9h4l-1 6 6-8H8l1-6z"/></svg></div>
-      <h3>Resume-boosting projects</h3>
-      <p>Each course includes hard, portfolio-grade projects with milestones and the exact resume line the work earns — built with the assistant at your side.</p>
+      <h3>Resume &amp; cover letter studio</h3>
+      <p>A dedicated documents workspace: AI resume feedback, a cover-letter generator tuned to any posting, and a chat assistant for every draft.</p>
     </div>
   </div>
 </section>
@@ -232,7 +432,7 @@
 
 <section id="projects" class="wrap">
   <div class="section-kicker">Projects</div>
-  <h2>What I'm building</h2>
+  <h2 class="serif">What I'm building</h2>
   <div class="proj-grid">
     <div class="proj">
       <span class="proj-tag tag-live">Live</span>
@@ -255,10 +455,11 @@
 
 <footer id="contact">
   <div class="wrap">
-    <h2>Get in touch</h2>
+    <h2 class="serif">Get in touch</h2>
     <p>Open to software engineering and finance internships — summer 2027 and beyond.</p>
     <div class="foot-links">
       <a class="btn" href="mailto:fpciaramitaro@gmail.com">fpciaramitaro@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/paolo-ciaramitaro-543463217/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub</a>
     </div>
     <p class="credits">© 2026 Francesco Paolo Ciaramitaro · Built and shipped from New York</p>
