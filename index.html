@@ -1,471 +1,499 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paolo Ciaramitaro — Software &amp; Finance</title>
-<meta name="description" content="Francesco Paolo Ciaramitaro — Computer Engineering student at Union College building tools at the intersection of software and finance.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paolo Ciaramitaro — Software &amp; Finance Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/base16/ocean.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#006b5f",
+                        "inverse-on-surface": "#2d3133",
+                        "error-container": "#93000a",
+                        "surface-tint": "#3cddc7",
+                        "on-primary-fixed-variant": "#005047",
+                        "secondary-container": "#3f465c",
+                        "secondary": "#bec6e0",
+                        "surface-container-low": "#191c1e",
+                        "on-surface": "#e0e3e5",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-dim": "#101415",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e0e3e5",
+                        "primary-fixed": "#62fae3",
+                        "surface-container-high": "#272a2c",
+                        "on-secondary-container": "#adb4ce",
+                        "outline-variant": "#3c4a46",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#b3bed5",
+                        "background": "#0f172a",
+                        "tertiary-fixed": "#d8e3fb",
+                        "tertiary-fixed-dim": "#bcc7de",
+                        "on-primary": "#003731",
+                        "outline": "#334155",
+                        "on-tertiary-fixed": "#111c2d",
+                        "surface-variant": "#1e293b",
+                        "on-tertiary-container": "#424d61",
+                        "primary": "#2dd4bf",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-secondary": "#283044",
+                        "tertiary": "#cfdaf2",
+                        "on-background": "#e0e3e5",
+                        "surface-container-highest": "#323537",
+                        "surface-container-lowest": "#0b0f10",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-bright": "#363a3b",
+                        "on-surface-variant": "#bacac5",
+                        "on-primary-container": "#00574d",
+                        "primary-fixed-dim": "#3cddc7",
+                        "on-primary-fixed": "#00201c",
+                        "primary-container": "#2dd4bf",
+                        "on-error": "#690005",
+                        "surface-container": "#1d2022",
+                        "on-tertiary": "#263143",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "surface": "#0f172a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "sm": "16px",
+                        "lg": "48px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "gutter": "48px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "label-sm": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --accent: #4f46e5; --accent-dark: #4338ca; --accent-soft: #eef2ff;
-    --garnet: #9a1b32; --garnet-soft: #fdf2f4;
-    --grad: linear-gradient(135deg, #4f46e5, #06b6d4);
-    --ink: #0f172a; --ink-2: #475569; --ink-3: #94a3b8;
-    --line: #e2e8f0; --bg: #ffffff; --bg-2: #f8fafc;
-    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', sans-serif;
-    --serif: 'Playfair Display', Georgia, serif;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font); color: var(--ink); line-height: 1.6;
-    -webkit-font-smoothing: antialiased; background: #fbfaff; position: relative;
-  }
-  /* Aurora background: fixed, layered radial washes */
-  body::before {
-    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background:
-      radial-gradient(900px 520px at 12% -4%,  rgba(79, 70, 229, 0.10), transparent 62%),
-      radial-gradient(820px 460px at 88% 12%,  rgba(6, 182, 212, 0.10),  transparent 62%),
-      radial-gradient(700px 480px at 78% 86%,  rgba(154, 27, 50, 0.06),  transparent 60%),
-      radial-gradient(640px 420px at 6% 74%,   rgba(79, 70, 229, 0.07),  transparent 60%);
-  }
-  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
-  .serif { font-family: var(--serif); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        .code-block {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: #94a3b8;
+            overflow-x: auto;
+        }
 
-  /* Nav */
-  nav { position: sticky; top: 0; z-index: 50; background: rgba(251,250,255,0.8); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(226,232,240,0.8); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-  .wordmark {
-    font-family: var(--serif); font-style: italic; font-weight: 600;
-    font-size: 20px; letter-spacing: 0.2px; text-decoration: none; color: var(--ink);
-  }
-  .wordmark span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .nav-links { display: flex; gap: 22px; align-items: center; }
-  .nav-links a { text-decoration: none; color: var(--ink-2); font-size: 14px; font-weight: 500; }
-  .nav-links a:hover { color: var(--ink); }
+        .bento-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  /* Hero */
-  .hero { padding: 92px 0 64px; text-align: center; }
-  .hero .kicker { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: rgba(238,242,255,0.85); border: 1px solid #c7d2fe; padding: 5px 14px; border-radius: 999px; margin-bottom: 26px; }
-  .hero .name {
-    font-family: var(--serif); font-style: italic; font-weight: 700;
-    font-size: clamp(42px, 7.5vw, 74px); line-height: 1.06; letter-spacing: -0.5px;
-    background: linear-gradient(120deg, #1e1b4b 0%, #4f46e5 55%, #06b6d4 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero .tag { font-size: clamp(17px, 2.6vw, 21px); color: var(--ink-2); margin-top: 18px; font-weight: 500; }
-  .hero p.blurb { max-width: 600px; margin: 14px auto 0; color: var(--ink-2); font-size: 16px; }
-  .hero-cta { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .bento-card:hover {
+            border-color: #2dd4bf;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.1);
+        }
 
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 9px; font-size: 14.5px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--bg); transition: all .15s; }
-  .btn:hover { border-color: var(--ink-3); background: var(--bg-2); transform: translateY(-1px); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(79,70,229,.32); }
-  .btn.primary:hover { background: var(--accent-dark); }
-  .btn.garnet { background: var(--garnet); border-color: var(--garnet); color: #fff; box-shadow: 0 4px 14px rgba(154,27,50,.28); }
-  .btn.garnet:hover { filter: brightness(1.1); }
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
 
-  section { padding: 64px 0; }
-  .section-kicker { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
-  h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
-  h2.serif { font-family: var(--serif); font-weight: 700; }
-  .section-sub { color: var(--ink-2); margin-top: 8px; max-width: 640px; }
-
-  /* Education / major showcase */
-  .edu-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 18px; margin-top: 36px; }
-  @media (max-width: 780px) { .edu-grid { grid-template-columns: 1fr; } }
-  .edu-card {
-    border: 1px solid var(--line); border-radius: 16px; padding: 30px;
-    background: rgba(255,255,255,0.85); backdrop-filter: blur(6px);
-    box-shadow: 0 2px 10px rgba(15,23,42,.05);
-  }
-  .edu-card.union { border-top: 4px solid var(--garnet); }
-  .union-head { display: flex; align-items: center; gap: 16px; }
-  .union-head h3 { font-family: var(--serif); font-size: 22px; font-weight: 700; }
-  .union-head .sub { font-size: 13px; color: var(--ink-2); }
-  .edu-facts { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; font-size: 14px; color: var(--ink-2); }
-  .edu-facts b { color: var(--ink); font-weight: 600; }
-  .edu-facts .fact { display: flex; gap: 9px; align-items: baseline; }
-  .edu-facts .dot { color: var(--garnet); font-weight: 700; }
-
-  .major-card {
-    position: relative; overflow: hidden; border-radius: 16px; padding: 30px;
-    background: #0f1030; color: #e2e8f0; border: 1px solid #262a63;
-    box-shadow: 0 18px 44px rgba(30,27,75,.35);
-  }
-  .major-card .circuit { position: absolute; inset: 0; opacity: .5; }
-  .major-card > * { position: relative; }
-  .major-kicker { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #67e8f9; }
-  .major-card h3 { font-family: var(--serif); font-style: italic; font-size: clamp(26px, 3.6vw, 34px); margin-top: 8px; color: #fff; }
-  .major-card p { margin-top: 10px; font-size: 14px; color: #b7bce3; max-width: 440px; }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
-  .chip-row span { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(103,232,249,0.10); border: 1px solid rgba(103,232,249,0.28); color: #a5f3fc; }
-  .chip-row.warm span { background: rgba(129,140,248,0.12); border-color: rgba(129,140,248,0.32); color: #c7d2fe; }
-
-  /* Resume */
-  .resume-box { margin-top: 36px; display: grid; grid-template-columns: 7fr 5fr; gap: 18px; }
-  @media (max-width: 820px) { .resume-box { grid-template-columns: 1fr; } }
-  .res-col { display: flex; flex-direction: column; gap: 14px; }
-  .res-card { border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; background: rgba(255,255,255,0.88); box-shadow: 0 2px 10px rgba(15,23,42,.04); }
-  .res-card h4 { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 14px; }
-  .job { padding-left: 16px; border-left: 2px solid var(--accent-soft); margin-bottom: 16px; }
-  .job:last-child { margin-bottom: 0; }
-  .job .role { font-weight: 650; font-size: 14.5px; }
-  .job .org { font-size: 13px; color: var(--ink-2); margin-top: 1px; }
-  .job .when { font-size: 12px; color: var(--ink-3); }
-  .job p { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
-  .skill-rows { display: flex; flex-direction: column; gap: 12px; }
-  .skill-rows .lbl { font-size: 12px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
-  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .pills span { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--bg-2); border: 1px solid var(--line); padding: 4px 11px; border-radius: 999px; }
-
-  /* App mockup */
-  .mock { margin: 40px auto 0; max-width: 780px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(15,23,42,.12); background: var(--bg); text-align: left; }
-  .mock-bar { display: flex; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--line); background: var(--bg-2); }
-  .dot-w { width: 11px; height: 11px; border-radius: 50%; }
-  .mock-body { display: flex; min-height: 300px; }
-  .mock-side { width: 168px; border-right: 1px solid var(--line); background: var(--bg-2); padding: 14px 10px; flex-shrink: 0; }
-  .mock-nav { font-size: 12px; color: var(--ink-2); padding: 6px 9px; border-radius: 6px; margin-bottom: 2px; }
-  .mock-nav.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-  .mock-main { flex: 1; padding: 18px; position: relative; }
-  .mock-title { font-weight: 650; font-size: 15px; margin-bottom: 12px; }
-  .mock-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; margin-bottom: 7px; }
-  .mock-logo { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10.5px; font-weight: 700; }
-  .mock-info { flex: 1; min-width: 0; }
-  .mock-role { font-size: 12.5px; font-weight: 600; }
-  .mock-meta { font-size: 11px; color: var(--ink-3); }
-  .mock-score { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 5px; background: #f0fdf4; color: #15803d; }
-  .mock-fab { position: absolute; right: 16px; bottom: 16px; width: 38px; height: 38px; border-radius: 50%; background: var(--grad); box-shadow: 0 5px 14px rgba(79,70,229,.4); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; }
-
-  /* Features */
-  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 36px; }
-  .feat { border: 1px solid var(--line); border-radius: 12px; padding: 22px; background: rgba(255,255,255,0.88); transition: box-shadow .15s, transform .15s; }
-  .feat:hover { box-shadow: 0 8px 24px rgba(15,23,42,.08); transform: translateY(-2px); }
-  .feat-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-  .feat h3 { font-size: 15.5px; font-weight: 650; margin-bottom: 6px; }
-  .feat p { font-size: 13.5px; color: var(--ink-2); }
-
-  /* Download strip */
-  .dl { background: linear-gradient(120deg, rgba(238,242,255,.7), rgba(236,254,255,.7)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .dl-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-  .dl h2 { font-size: 24px; }
-  .dl .hint { font-size: 12.5px; color: var(--ink-3); margin-top: 10px; max-width: 460px; }
-
-  /* Projects */
-  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 36px; }
-  .proj { border: 1px solid var(--line); border-radius: 14px; padding: 26px; background: rgba(255,255,255,0.88); }
-  .proj-tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; padding: 4px 10px; border-radius: 5px; margin-bottom: 14px; }
-  .tag-live { background: #f0fdf4; color: #15803d; }
-  .tag-dev { background: #fffbeb; color: #b45309; }
-  .proj h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
-  .proj p { font-size: 14px; color: var(--ink-2); margin-top: 8px; }
-  .proj .stack { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
-  .stack span { font-size: 11.5px; font-weight: 600; color: var(--ink-2); background: var(--bg-2); border: 1px solid var(--line); padding: 3px 10px; border-radius: 999px; }
-  .proj .links { margin-top: 18px; display: flex; gap: 10px; }
-  .proj .links a { font-size: 13.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
-  .proj .links a:hover { text-decoration: underline; }
-
-  footer { padding: 56px 0 40px; text-align: center; border-top: 1px solid var(--line); margin-top: 32px; background: rgba(255,255,255,.6); }
-  footer h2 { font-size: 24px; }
-  footer p { color: var(--ink-2); margin-top: 8px; }
-  .foot-links { display: flex; gap: 14px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
-  .credits { margin-top: 40px; font-size: 12.5px; color: var(--ink-3); }
-</style>
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
-<body>
-
-<nav>
-  <div class="wrap nav-inner">
-    <a class="wordmark" href="#">Paolo <span>Ciaramitaro</span></a>
-    <div class="nav-links">
-      <a href="#education">Education</a>
-      <a href="#resume">Resume</a>
-      <a href="#networking-hub">Networking Hub</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<div class="noise-overlay fixed inset-0 z-50"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 border-b border-outline-variant/30 backdrop-blur-sm">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-on-surface tracking-tighter" href="#">
+                Paolo <span class="text-primary">Ciaramitaro</span>
+</a>
+<div class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#education">Education</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#experience">Experience</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#projects">Projects</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#contact">Contact</a>
+<a class="bg-primary text-on-primary px-sm py-2 rounded-lg font-bold hover:opacity-80 transition-all active:scale-95 font-label-md text-label-md" href="#">Resume</a>
+</div>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
 </nav>
-
-<header class="hero wrap">
-  <span class="kicker">Computer Engineering · Union College '28 · New York</span>
-  <h1 class="name">Paolo Ciaramitaro</h1>
-  <div class="tag">Building tools at the intersection of software and finance.</div>
-  <p class="blurb">Backend developer and computer engineering student shipping real products — AI-powered desktop apps, financial tooling, and whatever solves the problem in front of me.</p>
-  <div class="hero-cta">
-    <a class="btn primary" href="#networking-hub">See Networking Hub</a>
-    <a class="btn" href="resume.pdf" download>Download Resume</a>
-    <a class="btn" href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</header>
-
-<section id="education" class="wrap">
-  <div class="section-kicker">Education</div>
-  <h2 class="serif">Union College, engineered.</h2>
-  <div class="edu-grid">
-    <div class="edu-card union">
-      <div class="union-head">
-        <svg width="52" height="58" viewBox="0 0 52 58" aria-label="Union College shield">
-          <path d="M2 2h48v30c0 13-10 21-24 24C12 53 2 45 2 32V2z" fill="#9a1b32"/>
-          <path d="M2 2h48v10H2z" fill="#7a1527"/>
-          <text x="26" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#fff">U</text>
-          <text x="26" y="10.5" text-anchor="middle" font-family="Georgia, serif" font-size="7" letter-spacing="1.5" fill="#f5d7dd">1795</text>
-        </svg>
-        <div>
-          <h3>Union College</h3>
-          <div class="sub">Schenectady, NY · Class of 2028</div>
-        </div>
-      </div>
-      <div class="edu-facts">
-        <div class="fact"><span class="dot">•</span><span><b>B.S. Computer Engineering</b> — GPA 3.7, Dean's List 2024–25</span></div>
-        <div class="fact"><span class="dot">•</span><span><b>Student Chair, Planning &amp; Priorities Committee</b> — advised the College President and senior leadership on fiscal strategy</span></div>
-        <div class="fact"><span class="dot">•</span><span><b>Union Finance Bootcamp</b> — selected for an intensive immersion in modeling, valuation, and markets</span></div>
-        <div class="fact"><span class="dot">•</span><span><b>Treasurer, Golf Club</b> · Sigma Chi · Catholic Student Association campus minister</span></div>
-      </div>
-    </div>
-
-    <div class="major-card">
-      <svg class="circuit" viewBox="0 0 560 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="#3b3f8f" stroke-width="1.6" fill="none">
-          <path d="M0 60 H120 V140 H260 V80 H420 V180 H560"/>
-          <path d="M0 220 H90 V160 H200 V240 H360 V120 H480 V40 H560"/>
-          <path d="M60 300 V250 H180 V190"/>
-          <path d="M320 300 V260 H440 V220 H560"/>
-          <path d="M140 0 V50 H240"/>
-          <path d="M400 0 V60 H500"/>
-        </g>
-        <g fill="#67e8f9">
-          <circle cx="120" cy="60" r="4"/><circle cx="260" cy="140" r="4"/><circle cx="420" cy="80" r="4"/>
-          <circle cx="90" cy="220" r="4"/><circle cx="200" cy="160" r="4"/><circle cx="360" cy="240" r="4"/><circle cx="480" cy="120" r="4"/>
-          <circle cx="180" cy="250" r="4"/><circle cx="440" cy="260" r="4"/>
-          <circle cx="240" cy="50" r="4"/><circle cx="500" cy="60" r="4"/>
-        </g>
-        <g fill="#818cf8" opacity=".9">
-          <rect x="250" y="130" width="20" height="20" rx="3"/>
-          <rect x="80" y="210" width="20" height="20" rx="3"/>
-          <rect x="470" y="110" width="20" height="20" rx="3"/>
-        </g>
-      </svg>
-      <div class="major-kicker">The Major</div>
-      <h3>Computer Engineering</h3>
-      <p>Where hardware meets software: from FPGA logic design and embedded systems up through full-stack apps and AI integration. I like owning the whole stack — gates to APIs.</p>
-      <div class="chip-row">
-        <span>FPGA · Intel Quartus</span><span>C++</span><span>Embedded Systems</span><span>Digital Logic</span><span>Linux / Unix</span>
-      </div>
-      <div class="chip-row warm">
-        <span>Java</span><span>Python</span><span>React</span><span>Kotlin</span><span>PostgreSQL</span><span>REST APIs</span><span>Claude API</span>
-      </div>
-    </div>
-  </div>
+<main class="relative">
+<!-- Hero Section -->
+<section class="min-height-[90vh] pt-xl pb-xl px-gutter max-w-container-max mx-auto grid lg:grid-cols-2 items-center gap-xl">
+<div class="space-y-md">
+<div class="inline-flex items-center gap-xs px-sm py-1 rounded-full border border-primary/30 bg-primary/5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary tracking-wider uppercase">Open for Summer '27 Internships</span>
+</div>
+<h1 class="font-display text-display leading-tight">
+                    Building tools at the intersection of <span class="text-primary italic">software</span> and <span class="text-secondary italic">finance</span>.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Backend developer and computer engineering student shipping real products — AI-powered desktop apps, financial tooling, and whatever solves the problem in front of me.
+                </p>
+<div class="flex gap-md pt-sm">
+<a class="bg-primary text-on-primary px-lg py-3 rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all active:scale-95" href="#projects">
+                        View Projects <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="border border-outline px-lg py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-variant transition-all" href="https://github.com/PaoloCiara">
+                        GitHub
+                    </a>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-all duration-700 blur-2xl"></div>
+<div class="code-block relative overflow-hidden">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="w-3 h-3 rounded-full bg-red-500/50"></span>
+<span class="w-3 h-3 rounded-full bg-yellow-500/50"></span>
+<span class="w-3 h-3 rounded-full bg-green-500/50"></span>
+<span class="ml-2 text-label-sm text-on-surface-variant">PaoloCiaramitaro.java</span>
+</div>
+<pre class="whitespace-pre-wrap"><span class="text-purple-400">public class</span> <span class="text-primary">DevPortfolio</span> {
+    <span class="text-purple-400">private</span> String name = <span class="text-green-400">"Paolo Ciaramitaro"</span>;
+    <span class="text-purple-400">private</span> String major = <span class="text-green-400">"Computer Engineering"</span>;
+    
+    <span class="text-purple-400">public void</span> <span class="text-blue-400">currentFocus</span>() {
+        System.out.println(<span class="text-green-400">"Building AI-powered career tools"</span>);
+        System.out.println(<span class="text-green-400">"Optimizing financial modeling flows"</span>);
+    }
+    
+    <span class="text-purple-400">public</span> List&lt;String&gt; getStack() {
+        <span class="text-purple-400">return</span> Arrays.asList(<span class="text-green-400">"Java", "Python", "React", "SEC EDGAR"</span>);
+    }
+}</pre>
+</div>
+</div>
 </section>
-
-<section id="resume" class="wrap">
-  <div class="section-kicker">Resume</div>
-  <h2 class="serif">Where I've worked</h2>
-  <p class="section-sub">The short version — <a href="resume.pdf" download style="color:var(--accent); font-weight:600">download the full PDF</a> for everything.</p>
-  <div class="resume-box">
-    <div class="res-col">
-      <div class="res-card">
-        <h4>Experience</h4>
-        <div class="job">
-          <div class="role">Backend Summer Intern</div>
-          <div class="org">Eulerity — New York, NY</div>
-          <div class="when">June 2026 – Present</div>
-          <p>Engineering "Eulerity Careers," a full-stack recruiting platform using React and Claude AI to automate candidate sourcing and matching — saving the startup $10k/year by replacing Greenhouse. Also rebuilding Admin UI features and optimizing ad-keyword processing.</p>
-        </div>
-        <div class="job">
-          <div class="role">Student Participant</div>
-          <div class="org">Union Finance Bootcamp — New York, NY</div>
-          <div class="when">Nov – Dec 2025</div>
-          <p>Selected for an intensive two-week immersion in financial modeling, valuation, and markets, taught by Union faculty and finance professionals.</p>
-        </div>
-        <div class="job">
-          <div class="role">Outside Operations</div>
-          <div class="org">Whippoorwill Club — Chappaqua, NY</div>
-          <div class="when">2022 – Present (seasonal)</div>
-          <p>Overhauled facility operations, partnered with golf professionals on tournaments, and trained new staff and caddies.</p>
-        </div>
-      </div>
-      <div class="res-card">
-        <h4>Leadership</h4>
-        <div class="job">
-          <div class="role">Student Chair, Planning &amp; Priorities Committee</div>
-          <div class="org">Union College</div>
-          <div class="when">2025 – 2026</div>
-          <p>Forecast a $13.4M FY26 deficit from institutional data, modeled FY27 enrollment scenarios, and advised the College President on scaling the capital budget from $2.0M to $3.7M.</p>
-        </div>
-        <div class="job">
-          <div class="role">Programming Teacher</div>
-          <div class="org">SummerTech / Coditum</div>
-          <div class="when">2021 – 2022</div>
-          <p>Taught Python fundamentals to 60 underprivileged students.</p>
-        </div>
-      </div>
-    </div>
-    <div class="res-col">
-      <div class="res-card">
-        <h4>Skills</h4>
-        <div class="skill-rows">
-          <div><div class="lbl">Engineering</div>
-            <div class="pills"><span>Java</span><span>Python</span><span>C++</span><span>React</span><span>JavaScript</span><span>Kotlin</span><span>PostgreSQL</span><span>REST</span><span>Linux/Unix</span><span>FPGA</span><span>Claude Code</span></div>
-          </div>
-          <div><div class="lbl">Finance</div>
-            <div class="pills"><span>Financial Modeling</span><span>Valuation</span><span>Bloomberg Market Concepts</span><span>Excel</span></div>
-          </div>
-          <div><div class="lbl">Languages</div>
-            <div class="pills"><span>English</span><span>Italian (fluent)</span><span>Spanish (fluent)</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="res-card" style="border-top: 4px solid var(--garnet)">
-        <h4 style="color: var(--garnet)">Currently</h4>
-        <p style="font-size: 14px; color: var(--ink-2)">Backend intern at Eulerity in NYC, building AI-powered recruiting tools — and targeting software engineering and finance internships for summer 2027.</p>
-        <div style="margin-top: 16px"><a class="btn garnet" href="resume.pdf" download>Download Resume (PDF)</a></div>
-      </div>
-    </div>
-  </div>
+<!-- Education Section (Bento Grid) -->
+<section class="py-xl px-gutter max-w-container-max mx-auto" id="education">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg">Education</h2>
+<p class="text-on-surface-variant">Union College, Engineered.</p>
+</div>
+<div class="font-label-md text-label-md text-primary bg-primary/10 px-4 py-2 border border-primary/20 rounded-lg">
+                    GPA 3.7 / 4.0 · Dean's List
+                </div>
+</div>
+<div class="grid md:grid-cols-12 gap-gutter">
+<!-- Main Education Card -->
+<div class="md:col-span-8 bento-card rounded-xl p-lg flex flex-col md:flex-row gap-lg overflow-hidden relative">
+<div class="flex-shrink-0">
+<img alt="Union College Seal" class="w-32 h-32 object-contain filter drop-shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNuzsmaxn0UBqQHCpyELyX9UwOQgxSjThB55B5xBOzpquo1d2VU--IxeK6qAaNcdQ4rMLJo7jmj96t8Y0iahCjSgi7j9pCGKqLRxwpTOB2m9orkZlL1wZOpS8jwQf1_Bn4_naE6Ml9DNty2vBLfnhW8hsqUeORQU1b1Y2hRFGd__TuEXTmJhcU98RWOdjRQlmDHiI72EUsca_3QLji4hCMfpLXe0gQdpuVO4XE8jM9WKPJ6sVkktHW6VaMKuQbyZyGmaMFjfSSfCs"/>
+</div>
+<div class="space-y-md">
+<div>
+<h3 class="font-headline-md text-headline-md font-bold">Union College</h3>
+<p class="text-on-surface-variant font-label-md">Schenectady, NY · Class of 2028</p>
+</div>
+<ul class="space-y-sm text-body-md">
+<li class="flex gap-2">
+<span class="text-primary font-bold">01.</span>
+<span><b>B.S. Computer Engineering</b> — Intersection of hardware gates and high-level APIs.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-primary font-bold">02.</span>
+<span><b>Student Chair, Planning &amp; Priorities</b> — Advised President on $13.4M deficit forecasting &amp; capital scaling.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-primary font-bold">03.</span>
+<span><b>Union Finance Bootcamp</b> — Selected for intensive modeling and valuation immersion.</span>
+</li>
+</ul>
+</div>
+<!-- Abstract Engineering Pattern Overlay -->
+<div class="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+<svg height="200" viewbox="0 0 100 100" width="200">
+<path d="M0 20 H30 V50 H100 M0 70 H60 V30 H100" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+<circle cx="30" cy="20" fill="currentColor" r="1.5"></circle>
+<circle cx="60" cy="70" fill="currentColor" r="1.5"></circle>
+</svg>
+</div>
+</div>
+<!-- Skills Card -->
+<div class="md:col-span-4 bento-card rounded-xl p-lg space-y-md bg-surface-variant">
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-primary">Technical Stack</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Java</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Python</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">C++</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">React</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Kotlin</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">PostgreSQL</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">REST</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">FPGA</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Claude Code</span>
+</div>
+<div class="pt-md border-t border-outline-variant/30">
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-secondary mb-3">Finance Tools</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Valuation</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">DCF Modeling</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">Excel</span>
+<span class="px-2 py-1 bg-surface rounded border border-outline text-label-sm font-label-sm">SEC EDGAR</span>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<section id="networking-hub" class="wrap">
-  <div class="section-kicker">Flagship project</div>
-  <h2 class="serif">Networking Hub</h2>
-  <p class="section-sub">An AI-powered career command center for macOS. It hunts openings across twelve sources, scores them against your resume, researches companies down to their SEC filings, finds people worth emailing, teaches you the role — and ships with a built-in AI assistant.</p>
-
-  <div class="mock">
-    <div class="mock-bar">
-      <span class="dot-w" style="background:#ff5f57"></span><span class="dot-w" style="background:#febc2e"></span><span class="dot-w" style="background:#28c840"></span>
-    </div>
-    <div class="mock-body">
-      <div class="mock-side">
-        <div class="mock-nav">Dashboard</div>
-        <div class="mock-nav on">Opportunities</div>
-        <div class="mock-nav">Forecast</div>
-        <div class="mock-nav">Companies</div>
-        <div class="mock-nav">Learn</div>
-        <div class="mock-nav">Documents</div>
-      </div>
-      <div class="mock-main">
-        <div class="mock-title">Top matches for you</div>
-        <div class="mock-row">
-          <span class="mock-logo" style="background:#1a73e8">ST</span>
-          <span class="mock-info"><span class="mock-role">Software Engineer Intern</span><br><span class="mock-meta">Stripe · New York, NY · Greenhouse</span></span>
-          <span class="mock-score">92 fit</span>
-        </div>
-        <div class="mock-row">
-          <span class="mock-logo" style="background:#188038">RA</span>
-          <span class="mock-info"><span class="mock-role">Backend Engineering Intern</span><br><span class="mock-meta">Ramp · New York, NY · Ashby</span></span>
-          <span class="mock-score">88 fit</span>
-        </div>
-        <div class="mock-row">
-          <span class="mock-logo" style="background:#8430ce">GS</span>
-          <span class="mock-info"><span class="mock-role">Summer Analyst, Private Credit</span><br><span class="mock-meta">Goldman Sachs · NYC · Google Jobs</span></span>
-          <span class="mock-score">85 fit</span>
-        </div>
-        <div class="mock-fab">✦</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="feat-grid">
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h4a1 1 0 011 1v1h3a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V5a1 1 0 011-1h3V3a1 1 0 011-1z"/></svg></div>
-      <h3>12-source opportunity feed</h3>
-      <p>Greenhouse, Lever, Ashby, SmartRecruiters, Workable, HN Who's Hiring, The Muse, Remotive, Google Jobs, USAJobs, Adzuna — plus an AI importer that reads any careers page.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1l2 4.3 4.7.6-3.4 3.2.9 4.6L8 11.5l-4.2 2.2.9-4.6L1.3 5.9 6 5.3 8 1z"/></svg></div>
-      <h3>AI resume matching</h3>
-      <p>Every posting scored 0-100 against your resume with a one-line reason, in parallel batches. Strong fits trigger desktop notifications.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1C4.1 1 1 3.6 1 6.8c0 1.8 1 3.4 2.5 4.5L3 15l3.4-2c.5.1 1 .1 1.6.1 3.9 0 7-2.6 7-5.8S11.9 1 8 1z"/></svg></div>
-      <h3>Built-in AI assistant</h3>
-      <p>A popup chat grounded in whatever you're viewing — a lesson, your resume, a project. Save conversations and pick them back up anytime.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M2 14V3a1 1 0 011-1h6a1 1 0 011 1v11h2V7h2a1 1 0 011 1v6h1v1H1v-1h1z"/></svg></div>
-      <h3>Company deep dives</h3>
-      <p>Research briefs built from live news, Claude's web search, and SEC EDGAR filings — 10-Ks and 8-Ks surfaced for finance interview prep.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 1.5c-2.7 0-6 1.3-6 3.5v1h12v-1c0-2.2-3.3-3.5-6-3.5z"/></svg></div>
-      <h3>Contact intelligence</h3>
-      <p>Finds shared-school alumni and recruiters at your best-fit companies, drafts personalized outreach, and reminds you when follow-ups are due.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M2 2v11h12v1.5H.5V2H2zm12.4 1.6l1.1 1L10 10.3 7.5 7.8 4 11.4l-1.1-1L7.5 5.6 10 8.1l4.4-4.5z"/></svg></div>
-      <h3>Recruiting-cycle forecast</h3>
-      <p>Predicts which roles and programs open next by combining your feed's history with known cycles — tech internships, IB summer analyst, PE on-cycle.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2L1 5.5 8 9l5.5-2.75V10H15V5.5L8 2zM4 8.8v2.7c0 1 1.8 2 4 2s4-1 4-2V8.8L8 10.8 4 8.8z"/></svg></div>
-      <h3>AI-generated courses</h3>
-      <p>Full prep courses for any role — chapter-depth lessons written in one pass, quizzes, videos, flashcard review, and syllabus imports for real classes.</p>
-    </div>
-    <div class="feat">
-      <div class="feat-icon"><svg width="18" height="18" viewBox="0 0 16 16"><path fill="currentColor" d="M9 1L3 9h4l-1 6 6-8H8l1-6z"/></svg></div>
-      <h3>Resume &amp; cover letter studio</h3>
-      <p>A dedicated documents workspace: AI resume feedback, a cover-letter generator tuned to any posting, and a chat assistant for every draft.</p>
-    </div>
-  </div>
+<!-- Experience Section (Timeline) -->
+<section class="py-xl px-gutter max-w-container-max mx-auto bg-surface-container-lowest/50" id="experience">
+<div class="mb-xl text-center">
+<h2 class="font-headline-lg text-headline-lg">Experience</h2>
+<p class="text-on-surface-variant mt-2">Engineering the systems of tomorrow.</p>
+</div>
+<div class="relative max-w-4xl mx-auto space-y-xl">
+<!-- Timeline Line -->
+<div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-outline-variant md:-translate-x-1/2"></div>
+<!-- Job 1 -->
+<div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center gap-md group">
+<div class="md:w-[45%] md:text-right">
+<span class="font-label-md text-label-md text-primary">Summer 2026 — Present</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-1">Backend Summer Intern</h3>
+<p class="text-secondary font-medium">Eulerity · New York, NY</p>
+</div>
+<div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 w-2 h-2 rounded-full bg-primary border-4 border-surface shadow-[0_0_10px_#2dd4bf]"></div>
+<div class="md:w-[45%] bg-surface-variant p-md rounded-lg border border-outline group-hover:border-primary/50 transition-colors">
+<p class="text-on-surface-variant text-body-md">
+                            Engineering "Eulerity Careers" using React and Claude AI to automate candidate sourcing. Replacing Greenhouse workflows, saving $10k annually.
+                        </p>
+</div>
+</div>
+<!-- Job 2 -->
+<div class="relative flex flex-col md:flex-row-reverse md:justify-between items-start md:items-center gap-md group">
+<div class="md:w-[45%] md:text-left">
+<span class="font-label-md text-label-md text-primary">Nov — Dec 2025</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-1">Finance Bootcamp Participant</h3>
+<p class="text-secondary font-medium">Union College · NYC</p>
+</div>
+<div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 w-2 h-2 rounded-full bg-primary border-4 border-surface shadow-[0_0_10px_#2dd4bf]"></div>
+<div class="md:w-[45%] bg-surface-variant p-md rounded-lg border border-outline group-hover:border-primary/50 transition-colors">
+<p class="text-on-surface-variant text-body-md">
+                            Intensive immersion in financial modeling, valuation techniques, and market dynamics taught by industry veterans.
+                        </p>
+</div>
+</div>
+<!-- Job 3 -->
+<div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center gap-md group">
+<div class="md:w-[45%] md:text-right">
+<span class="font-label-md text-label-md text-primary">2021 — 2022</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-1">Programming Teacher</h3>
+<p class="text-secondary font-medium">SummerTech / Coditum</p>
+</div>
+<div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 w-2 h-2 rounded-full bg-primary border-4 border-surface shadow-[0_0_10px_#2dd4bf]"></div>
+<div class="md:w-[45%] bg-surface-variant p-md rounded-lg border border-outline group-hover:border-primary/50 transition-colors">
+<p class="text-on-surface-variant text-body-md">
+                            Taught Python fundamentals to 60+ underprivileged students, designing curriculum for logic and automation.
+                        </p>
+</div>
+</div>
+</div>
 </section>
-
-<section class="dl">
-  <div class="wrap dl-inner">
-    <div>
-      <h2>Try Networking Hub</h2>
-      <p class="section-sub">Free and open source. Your data never leaves your Mac — everything lives in one local file.</p>
-      <p class="hint">Unsigned build: after unzipping, right-click the app → Open the first time. Bring your own Anthropic API key (Settings) to power the AI features.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:10px; align-items:stretch">
-      <a class="btn primary" href="https://github.com/PaoloCiara/networking-hub/releases/latest/download/NetworkingHub-mac.zip">
-        <svg width="15" height="15" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1v8.6L4.7 6.3 3.6 7.4 8 11.8l4.4-4.4-1.1-1.1L8 9.6V1zM2 13h12v1.5H2z"/></svg>
-        Download for macOS (Apple Silicon)
-      </a>
-      <a class="btn" href="https://github.com/PaoloCiara/networking-hub/releases/latest/download/NetworkingHub-mac-intel.zip">Intel Mac version</a>
-      <a class="btn" href="https://github.com/PaoloCiara/networking-hub" target="_blank" rel="noopener">View source on GitHub</a>
-    </div>
-  </div>
+<!-- Projects Section -->
+<section class="py-xl px-gutter max-w-container-max mx-auto" id="projects">
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg">Flagship Projects</h2>
+<div class="h-1 w-20 bg-primary mt-2"></div>
+</div>
+<div class="grid lg:grid-cols-2 gap-xl">
+<!-- Networking Hub Details -->
+<div class="space-y-lg">
+<div class="bento-card rounded-xl p-lg">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-sm text-label-sm bg-primary/20 text-primary px-3 py-1 rounded-full border border-primary/30 uppercase tracking-widest">macOS Application</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">info</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">share</span>
+</div>
+</div>
+<h3 class="font-display text-headline-lg mb-sm">Networking Hub</h3>
+<p class="text-on-surface-variant text-body-lg mb-md leading-relaxed">
+                            An AI-powered career command center for macOS. Aggregates data from 12+ sources (Greenhouse, Lever, SEC EDGAR) to research companies, score resumes, and find alumni contacts.
+                        </p>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-sm bg-surface rounded border border-outline">
+<h4 class="text-primary font-bold text-label-md mb-1">12 Source Feed</h4>
+<p class="text-on-surface-variant text-label-sm">Aggregating Greenhouse, Ashby, and HN.</p>
+</div>
+<div class="p-sm bg-surface rounded border border-outline">
+<h4 class="text-primary font-bold text-label-md mb-1">SEC Research</h4>
+<p class="text-on-surface-variant text-label-sm">Live 10-K &amp; 8-K filing analysis via AI.</p>
+</div>
+</div>
+<div class="mt-lg flex gap-md">
+<a class="bg-primary text-on-primary px-md py-2 rounded font-bold hover:brightness-110" href="#">Download Release</a>
+<a class="border border-outline px-md py-2 rounded font-bold hover:bg-surface-variant transition-colors" href="#">View Source</a>
+</div>
+</div>
+</div>
+<!-- Project Visual Mockup -->
+<div class="relative min-h-[400px] flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-3xl blur-2xl"></div>
+<!-- macOS App Mockup -->
+<div class="relative w-full max-w-lg bg-[#0f172a] rounded-xl border border-[#334155] shadow-2xl overflow-hidden scale-100 lg:scale-110">
+<div class="bg-[#1e293b] px-4 py-2 border-b border-[#334155] flex items-center gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
+<div class="w-3 h-3 rounded-full bg-[#febc2e]"></div>
+<div class="w-3 h-3 rounded-full bg-[#28c840]"></div>
+</div>
+<div class="flex-1 text-center font-label-sm text-[#94a3b8]">Networking Hub</div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4">
+<div class="h-4 w-32 bg-slate-700 rounded animate-pulse"></div>
+<div class="h-6 w-16 bg-primary/20 rounded-full border border-primary/30"></div>
+</div>
+<div class="space-y-3">
+<div class="p-3 bg-slate-800/50 rounded-lg border border-outline flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-[10px] font-bold">ST</div>
+<div>
+<div class="text-sm font-bold">Stripe · Software Engineer</div>
+<div class="text-[10px] text-slate-400">Greenhouse · NYC</div>
+</div>
+</div>
+<div class="text-primary font-bold text-sm">92 Fit</div>
+</div>
+<div class="p-3 bg-slate-800/50 rounded-lg border border-outline flex justify-between items-center opacity-60">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-green-600 flex items-center justify-center text-[10px] font-bold">RA</div>
+<div>
+<div class="text-sm font-bold">Ramp · Backend Eng</div>
+<div class="text-[10px] text-slate-400">Ashby · Remote</div>
+</div>
+</div>
+<div class="text-primary font-bold text-sm">88 Fit</div>
+</div>
+</div>
+<div class="pt-2 flex justify-end">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-on-primary">spark</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Other Projects -->
+<div class="grid md:grid-cols-3 gap-gutter mt-xl">
+<div class="bento-card p-lg rounded-xl flex flex-col justify-between group">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">In Development</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-2">BDC Project</h3>
+<p class="text-on-surface-variant text-body-md mt-sm">Deep dive into Business Development Companies, analytics and private credit market tooling.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">Finance</span>
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">Private Credit</span>
+</div>
+</div>
+<div class="bento-card p-lg rounded-xl flex flex-col justify-between group">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Finished</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-2">Valuation Suite</h3>
+<p class="text-on-surface-variant text-body-md mt-sm">Custom DCF and LBO modeling engine with automated data scrapers for Bloomberg endpoints.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">Excel</span>
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">VBA</span>
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">Python</span>
+</div>
+</div>
+<div class="bento-card p-lg rounded-xl flex flex-col justify-between group bg-primary/5 border-primary/20">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Ongoing</span>
+<h3 class="font-headline-md text-headline-md font-bold mt-2">AI Recruiter UI</h3>
+<p class="text-on-surface-variant text-body-md mt-sm">Modernizing internal recruiting dashboards at Eulerity with focused Claude-powered UX.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">React</span>
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-label-sm">Node.js</span>
+</div>
+</div>
+</div>
 </section>
-
-<section id="projects" class="wrap">
-  <div class="section-kicker">Projects</div>
-  <h2 class="serif">What I'm building</h2>
-  <div class="proj-grid">
-    <div class="proj">
-      <span class="proj-tag tag-live">Live</span>
-      <h3>Networking Hub</h3>
-      <p>AI-powered career command center for macOS: opportunity aggregation across 12 sources, resume matching, company research with SEC filings, contact intelligence, recruiting forecasts, generated courses, and a built-in assistant.</p>
-      <div class="stack"><span>Electron</span><span>Node.js</span><span>Claude API</span><span>SEC EDGAR</span><span>Vanilla JS</span></div>
-      <div class="links">
-        <a href="https://github.com/PaoloCiara/networking-hub" target="_blank" rel="noopener">Source →</a>
-        <a href="https://github.com/PaoloCiara/networking-hub/releases/latest">Download →</a>
-      </div>
-    </div>
-    <div class="proj">
-      <span class="proj-tag tag-dev">In development</span>
-      <h3>BDC Project</h3>
-      <p>A deep dive into business development companies — analytics and tooling for the private-credit space. Actively being built; details coming soon.</p>
-      <div class="stack"><span>Finance</span><span>Private Credit</span><span>Coming soon</span></div>
-    </div>
-  </div>
+<!-- CTA / Resume Footer Area -->
+<section class="py-xl px-gutter max-w-container-max mx-auto">
+<div class="bg-gradient-to-r from-primary/10 to-secondary/10 border border-outline p-xl rounded-2xl text-center space-y-md relative overflow-hidden">
+<div class="absolute -left-20 -top-20 w-64 h-64 bg-primary/20 rounded-full opacity-30 blur-2xl"></div>
+<h2 class="font-display text-headline-lg">Ready to build something impactful?</h2>
+<p class="text-on-surface-variant text-body-lg max-w-xl mx-auto">
+                    Currently seeking opportunities at the intersection of engineering and finance for Summer 2027.
+                </p>
+<div class="flex flex-col sm:flex-row gap-md justify-center pt-md relative z-10">
+<a class="bg-primary text-on-primary px-lg py-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-transform hover:scale-105" href="mailto:fpciaramitaro@gmail.com">
+<span class="material-symbols-outlined">mail</span> Contact Me
+                    </a>
+<a class="bg-surface-variant text-on-surface px-lg py-4 rounded-lg font-bold flex items-center justify-center gap-2 border border-outline transition-transform hover:scale-105" href="#">
+<span class="material-symbols-outlined">description</span> Download Resume
+                    </a>
+</div>
+</div>
 </section>
-
-<footer id="contact">
-  <div class="wrap">
-    <h2 class="serif">Get in touch</h2>
-    <p>Open to software engineering and finance internships — summer 2027 and beyond.</p>
-    <div class="foot-links">
-      <a class="btn" href="mailto:fpciaramitaro@gmail.com">fpciaramitaro@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/paolo-ciaramitaro-543463217/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/PaoloCiara" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <p class="credits">© 2026 Francesco Paolo Ciaramitaro · Built and shipped from New York</p>
-  </div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface py-lg border-t border-outline-variant/20" id="contact">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-md">
+<div class="flex flex-col items-center md:items-start gap-1">
+<a class="font-headline-md text-headline-md text-primary font-bold tracking-tighter" href="#">DevPortfolio</a>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 DevPortfolio. Built with precision.</p>
+</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 font-label-sm text-label-sm uppercase tracking-widest" href="https://github.com/PaoloCiara">GitHub</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 font-label-sm text-label-sm uppercase tracking-widest" href="https://www.linkedin.com/in/paolo-ciaramitaro-543463217/">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 font-label-sm text-label-sm uppercase tracking-widest" href="mailto:fpciaramitaro@gmail.com">Email</a>
+</div>
+</div>
 </footer>
+<script>
+        // Simple scroll progress interaction
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            // Could add a progress bar if needed
+        };
 
-</body>
-</html>
+        // Micro-interaction for code blocks
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential hover logic
+            });
+        });
+    </script>
+</body></html>
